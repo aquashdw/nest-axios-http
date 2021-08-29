@@ -9,15 +9,21 @@ export class AppController {
 
   // TODO relay get without anything
   @Get('get-simple')
-  getSimple() {}
+  getSimple() {
+    this.appService.getSimple();
+  }
 
   // TODO relay get with path param
   @Get('get-path/:id')
-  getPath(@Param('id') path: number) {}
+  getPath(@Param('id') path: string) {
+    this.appService.getPath(path);
+  }
 
   // TODO relay get with query param
   @Get('get-query')
-  getQuery(@Query('key') key: string) {}
+  getQuery(@Query('key') key: string) {
+    return this.appService.getQuery(key);
+  }
 
   // TODO response with server status response
   @Post('post-status')

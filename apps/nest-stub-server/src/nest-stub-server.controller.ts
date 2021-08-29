@@ -5,7 +5,7 @@ import { NestStubServerService } from './nest-stub-server.service';
 export class NestStubServerController {
   constructor(private readonly nestStubServerService: NestStubServerService) {}
 
-  @Get()
+  @Get('get-simple')
   getHello(): string {
     return this.nestStubServerService.getHello();
   }
