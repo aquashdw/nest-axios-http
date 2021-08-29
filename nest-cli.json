@@ -1,4 +1,30 @@
 {
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src"
+  "sourceRoot": "apps/nest-axios-http/src",
+  "monorepo": true,
+  "root": "apps/nest-axios-http",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/nest-axios-http/tsconfig.app.json"
+  },
+  "projects": {
+    "nest-axios-http": {
+      "type": "application",
+      "root": "apps/nest-axios-http",
+      "entryFile": "main",
+      "sourceRoot": "apps/nest-axios-http/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/nest-axios-http/tsconfig.app.json"
+      }
+    },
+    "nest-stub-server": {
+      "type": "application",
+      "root": "apps/nest-stub-server",
+      "entryFile": "main",
+      "sourceRoot": "apps/nest-stub-server/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/nest-stub-server/tsconfig.app.json"
+      }
+    }
+  }
 }
