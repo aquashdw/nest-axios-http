@@ -1,6 +1,11 @@
-import { Injectable, Logger } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 
 @Injectable()
 export class AppService {
@@ -34,13 +39,13 @@ export class AppService {
   }
 
   getPath(path: string) {
-    return this.httpService
+    this.httpService
       .get(`http://localhost:3001/get-path/${path}`)
       .subscribe(this.observer);
   }
 
   getQuery(query: string) {
-    return this.httpService
+    this.httpService
       .get('http://localhost:3001/get-query', {
         params: {
           key: query,

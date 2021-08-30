@@ -5,24 +5,22 @@ import { PostResDto } from '../dto/post.res.dto';
 
 @Controller()
 export class AppController {
+  private readonly logger = new Logger(AppController.name);
   constructor(private readonly appService: AppService) {}
 
-  // TODO relay get without anything
   @Get('get-simple')
   getSimple() {
     this.appService.getSimple();
   }
 
-  // TODO relay get with path param
   @Get('get-path/:id')
   getPath(@Param('id') path: string) {
     this.appService.getPath(path);
   }
 
-  // TODO relay get with query param
   @Get('get-query')
   getQuery(@Query('key') key: string) {
-    return this.appService.getQuery(key);
+    this.appService.getQuery(key);
   }
 
   // TODO response with server status response
