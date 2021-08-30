@@ -1,15 +1,10 @@
-import {
-  Injectable,
-  InternalServerErrorException,
-  Logger,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 
 @Injectable()
-export class AppService {
-  private readonly logger = new Logger(AppService.name);
+export class GetService {
+  private readonly logger = new Logger(GetService.name);
   constructor(private httpService: HttpService) {}
 
   private observer = {

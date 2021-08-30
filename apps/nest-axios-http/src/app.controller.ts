@@ -1,31 +1,47 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
-import { AppService } from './app.service';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Logger,
+  Param,
+  Post,
+  Query,
+  Res,
+} from '@nestjs/common';
+import { GetService } from './get.service';
 import { PostBodyDto } from '../dto/post.body.dto';
 import { PostResDto } from '../dto/post.res.dto';
+import { Response } from 'express';
+import { PostService } from './post.service';
 
 @Controller()
 export class AppController {
   private readonly logger = new Logger(AppController.name);
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly getService: GetService,
+    private readonly postService: PostService,
+  ) {}
 
   @Get('get-simple')
   getSimple() {
-    this.appService.getSimple();
+    this.getService.getSimple();
   }
 
   @Get('get-path/:id')
   getPath(@Param('id') path: string) {
-    this.appService.getPath(path);
+    this.getService.getPath(path);
   }
 
   @Get('get-query')
   getQuery(@Query('key') key: string) {
-    this.appService.getQuery(key);
+    this.getService.getQuery(key);
   }
 
   // TODO response with server status response
   @Post('post-status')
-  postSimple(): PostResDto {
+  postSimple(@Res() response: Response): PostResDto {
+    response.status(HttpStatus.OK).send();
     return null;
   }
 
